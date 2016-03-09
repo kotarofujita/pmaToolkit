@@ -33,11 +33,11 @@ public class pmaToolkit: NSObject {
         public static let maxBeaconsInRangeCount : Int = 20
         
         public struct cacheSettings {
-            static var requestTimeout : Double = 10 //secs
-            static var hostProtocol = ""
-            static var hostName = ""
-            static var urlBeacons = ""
-            static var urlLocations = ""
+            public static var requestTimeout : Double = 10 //secs
+            public static var hostProtocol = ""
+            public static var hostName = ""
+            public static var urlBeacons = ""
+            public static var urlLocations = ""
         }
         
     }
