@@ -7,9 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		38A58EC7B47171E21C93950B /* Pods_pmaToolkit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F2A142C82CFD3F28ABF1DBD /* Pods_pmaToolkit.framework */; };
+		A557B68D1C7F8D4500113417 /* pmaLocationManagerRodin.swift in Sources */ = {isa = PBXBuildFile; fileRef = A557B68C1C7F8D4500113417 /* pmaLocationManagerRodin.swift */; };
+		A59BD6101C7F5B53005CBEF4 /* pmaCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59BD60F1C7F5B53005CBEF4 /* pmaCacheManager.swift */; };
 		A5DF05D51C7E4530008A09AB /* pmaToolkit.h in Headers */ = {isa = PBXBuildFile; fileRef = A5DF05D41C7E4530008A09AB /* pmaToolkit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A5DF05DC1C7E4530008A09AB /* pmaToolkit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5DF05D11C7E4530008A09AB /* pmaToolkit.framework */; };
 		A5DF05E11C7E4530008A09AB /* pmaToolkitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DF05E01C7E4530008A09AB /* pmaToolkitTests.swift */; };
+		A5EDF6E41C7E45B90065F121 /* pmaToolkit.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDF6E31C7E45B90065F121 /* pmaToolkit.swift */; };
+		A5EDF6E61C7E46990065F121 /* pmaLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDF6E51C7E46990065F121 /* pmaLocationManager.swift */; };
+		A5EDF6E81C7E47E70065F121 /* pmaBeacon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDF6E71C7E47E70065F121 /* pmaBeacon.swift */; };
+		A5EDF6EA1C7E47FC0065F121 /* pmaLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDF6E91C7E47FC0065F121 /* pmaLocation.swift */; };
+		A5EDF6EC1C7E48150065F121 /* pmaObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EDF6EB1C7E48150065F121 /* pmaObject.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -23,12 +31,22 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		06DE392296E9CE69383EB257 /* Pods-pmaToolkit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pmaToolkit.release.xcconfig"; path = "Pods/Target Support Files/Pods-pmaToolkit/Pods-pmaToolkit.release.xcconfig"; sourceTree = "<group>"; };
+		391AF4D8EC8B75B6B9BCB567 /* Pods-pmaToolkit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pmaToolkit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-pmaToolkit/Pods-pmaToolkit.debug.xcconfig"; sourceTree = "<group>"; };
+		4F2A142C82CFD3F28ABF1DBD /* Pods_pmaToolkit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_pmaToolkit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A557B68C1C7F8D4500113417 /* pmaLocationManagerRodin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pmaLocationManagerRodin.swift; sourceTree = "<group>"; };
+		A59BD60F1C7F5B53005CBEF4 /* pmaCacheManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pmaCacheManager.swift; sourceTree = "<group>"; };
 		A5DF05D11C7E4530008A09AB /* pmaToolkit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = pmaToolkit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5DF05D41C7E4530008A09AB /* pmaToolkit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pmaToolkit.h; sourceTree = "<group>"; };
 		A5DF05D61C7E4530008A09AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A5DF05DB1C7E4530008A09AB /* pmaToolkitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = pmaToolkitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5DF05E01C7E4530008A09AB /* pmaToolkitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pmaToolkitTests.swift; sourceTree = "<group>"; };
 		A5DF05E21C7E4530008A09AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A5EDF6E31C7E45B90065F121 /* pmaToolkit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pmaToolkit.swift; sourceTree = "<group>"; };
+		A5EDF6E51C7E46990065F121 /* pmaLocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pmaLocationManager.swift; sourceTree = "<group>"; };
+		A5EDF6E71C7E47E70065F121 /* pmaBeacon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pmaBeacon.swift; sourceTree = "<group>"; };
+		A5EDF6E91C7E47FC0065F121 /* pmaLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pmaLocation.swift; sourceTree = "<group>"; };
+		A5EDF6EB1C7E48150065F121 /* pmaObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pmaObject.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38A58EC7B47171E21C93950B /* Pods_pmaToolkit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -50,12 +69,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		843D90429AE25FFC35C295D1 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				391AF4D8EC8B75B6B9BCB567 /* Pods-pmaToolkit.debug.xcconfig */,
+				06DE392296E9CE69383EB257 /* Pods-pmaToolkit.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		A5DF05C71C7E4530008A09AB = {
 			isa = PBXGroup;
 			children = (
 				A5DF05D31C7E4530008A09AB /* pmaToolkit */,
 				A5DF05DF1C7E4530008A09AB /* pmaToolkitTests */,
 				A5DF05D21C7E4530008A09AB /* Products */,
+				843D90429AE25FFC35C295D1 /* Pods */,
+				F55EF043DD381F888938812D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -73,6 +103,13 @@
 			children = (
 				A5DF05D41C7E4530008A09AB /* pmaToolkit.h */,
 				A5DF05D61C7E4530008A09AB /* Info.plist */,
+				A5EDF6E31C7E45B90065F121 /* pmaToolkit.swift */,
+				A59BD60F1C7F5B53005CBEF4 /* pmaCacheManager.swift */,
+				A5EDF6E51C7E46990065F121 /* pmaLocationManager.swift */,
+				A5EDF6E71C7E47E70065F121 /* pmaBeacon.swift */,
+				A5EDF6E91C7E47FC0065F121 /* pmaLocation.swift */,
+				A5EDF6EB1C7E48150065F121 /* pmaObject.swift */,
+				A557B68C1C7F8D4500113417 /* pmaLocationManagerRodin.swift */,
 			);
 			path = pmaToolkit;
 			sourceTree = "<group>";
@@ -84,6 +121,14 @@
 				A5DF05E21C7E4530008A09AB /* Info.plist */,
 			);
 			path = pmaToolkitTests;
+			sourceTree = "<group>";
+		};
+		F55EF043DD381F888938812D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4F2A142C82CFD3F28ABF1DBD /* Pods_pmaToolkit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -104,10 +149,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A5DF05E51C7E4530008A09AB /* Build configuration list for PBXNativeTarget "pmaToolkit" */;
 			buildPhases = (
+				6E5EF171B45B83C57FEF1820 /* Check Pods Manifest.lock */,
 				A5DF05CC1C7E4530008A09AB /* Sources */,
 				A5DF05CD1C7E4530008A09AB /* Frameworks */,
 				A5DF05CE1C7E4530008A09AB /* Headers */,
 				A5DF05CF1C7E4530008A09AB /* Resources */,
+				8DD7DECEA92C6BDF440BF0A1 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -189,11 +236,51 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		6E5EF171B45B83C57FEF1820 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		8DD7DECEA92C6BDF440BF0A1 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-pmaToolkit/Pods-pmaToolkit-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		A5DF05CC1C7E4530008A09AB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5EDF6E41C7E45B90065F121 /* pmaToolkit.swift in Sources */,
+				A5EDF6E61C7E46990065F121 /* pmaLocationManager.swift in Sources */,
+				A5EDF6E81C7E47E70065F121 /* pmaBeacon.swift in Sources */,
+				A557B68D1C7F8D4500113417 /* pmaLocationManagerRodin.swift in Sources */,
+				A59BD6101C7F5B53005CBEF4 /* pmaCacheManager.swift in Sources */,
+				A5EDF6EA1C7E47FC0065F121 /* pmaLocation.swift in Sources */,
+				A5EDF6EC1C7E48150065F121 /* pmaObject.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -307,7 +394,9 @@
 		};
 		A5DF05E61C7E4530008A09AB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 391AF4D8EC8B75B6B9BCB567 /* Pods-pmaToolkit.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -318,12 +407,15 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.pmaTools.pmaToolkit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		A5DF05E71C7E4530008A09AB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 06DE392296E9CE69383EB257 /* Pods-pmaToolkit.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -376,6 +468,7 @@
 				A5DF05E71C7E4530008A09AB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A5DF05E81C7E4530008A09AB /* Build configuration list for PBXNativeTarget "pmaToolkitTests" */ = {
 			isa = XCConfigurationList;
@@ -384,6 +477,7 @@
 				A5DF05EA1C7E4530008A09AB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
