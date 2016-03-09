@@ -16,8 +16,8 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "pmaToolkit"
-  s.version      = "0.0.1"
-  s.summary      = "A short description of pmaTools."
+  s.version      = "0.1.0"
+  s.summary      = "pmaToolkit for the Power of Art Hackathon"
   
   s.requires_arc = true
 
@@ -29,7 +29,7 @@ Pod::Spec.new do |s|
   s.description  = <<-DESC
                    DESC
 
-  s.homepage     = "http://EXAMPLE/pmaTools"
+  # s.homepage     = "http://EXAMPLE/pmaTools"
   # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
 
 
@@ -40,7 +40,7 @@ Pod::Spec.new do |s|
   #  Popular ones are 'MIT', 'BSD' and 'Apache License, Version 2.0'.
   #
 
-  s.license      = "MIT (example)"
+  # s.license      = "MIT (example)"
   # s.license      = { :type => "MIT", :file => "FILE_LICENSE" }
 
 
@@ -54,7 +54,7 @@ Pod::Spec.new do |s|
   #  profile URL.
   #
 
-  s.author             = { "Peter Alt" => "peter@peteralt.com" }
+  s.author             = { "Peter Alt" => "peter.alt@philamuseum.org" }
   # Or just: s.author    = "Peter Alt"
   # s.authors            = { "Peter Alt" => "peter@peteralt.com" }
   # s.social_media_url   = "http://twitter.com/Peter Alt"
@@ -65,8 +65,8 @@ Pod::Spec.new do |s|
   #  the deployment target. You can optionally include the target after the platform.
   #
 
-  # s.platform     = :ios
-  # s.platform     = :ios, "5.0"
+  s.platform     = :ios
+  s.platform     = :ios, "8.0"
 
   #  When using multiple platforms
   s.ios.deployment_target = "8.0"
