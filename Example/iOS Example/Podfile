@@ -5,7 +5,7 @@ use_frameworks!
 
 target 'iOS Example' do
 
-pod 'pmaToolkit', :git => 'git@bitbucket.org:peteralt_pma/pmatoolkit.git'
+pod 'pmaToolkit', :git => 'https://github.com/philamuseum/pmaToolkit.git'
 pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'
 
 end
