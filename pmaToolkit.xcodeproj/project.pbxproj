@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		38A58EC7B47171E21C93950B /* Pods_pmaToolkit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F2A142C82CFD3F28ABF1DBD /* Pods_pmaToolkit.framework */; };
+		50E24201849FCE124CC52FA7 /* Pods_pmaToolkitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BB7EF990C49068603F881BD /* Pods_pmaToolkitTests.framework */; };
 		A557B68D1C7F8D4500113417 /* pmaLocationManagerRodin.swift in Sources */ = {isa = PBXBuildFile; fileRef = A557B68C1C7F8D4500113417 /* pmaLocationManagerRodin.swift */; };
 		A59BD6101C7F5B53005CBEF4 /* pmaCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59BD60F1C7F5B53005CBEF4 /* pmaCacheManager.swift */; };
 		A5DF05D51C7E4530008A09AB /* pmaToolkit.h in Headers */ = {isa = PBXBuildFile; fileRef = A5DF05D41C7E4530008A09AB /* pmaToolkit.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -34,6 +35,8 @@
 		06DE392296E9CE69383EB257 /* Pods-pmaToolkit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pmaToolkit.release.xcconfig"; path = "Pods/Target Support Files/Pods-pmaToolkit/Pods-pmaToolkit.release.xcconfig"; sourceTree = "<group>"; };
 		391AF4D8EC8B75B6B9BCB567 /* Pods-pmaToolkit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pmaToolkit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-pmaToolkit/Pods-pmaToolkit.debug.xcconfig"; sourceTree = "<group>"; };
 		4F2A142C82CFD3F28ABF1DBD /* Pods_pmaToolkit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_pmaToolkit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5BB7EF990C49068603F881BD /* Pods_pmaToolkitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_pmaToolkitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6108C6C1A13654037FCE4813 /* Pods-pmaToolkitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pmaToolkitTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-pmaToolkitTests/Pods-pmaToolkitTests.release.xcconfig"; sourceTree = "<group>"; };
 		A557B68C1C7F8D4500113417 /* pmaLocationManagerRodin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pmaLocationManagerRodin.swift; sourceTree = "<group>"; };
 		A59BD60F1C7F5B53005CBEF4 /* pmaCacheManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pmaCacheManager.swift; sourceTree = "<group>"; };
 		A5DF05D11C7E4530008A09AB /* pmaToolkit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = pmaToolkit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -47,6 +50,7 @@
 		A5EDF6E71C7E47E70065F121 /* pmaBeacon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pmaBeacon.swift; sourceTree = "<group>"; };
 		A5EDF6E91C7E47FC0065F121 /* pmaLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pmaLocation.swift; sourceTree = "<group>"; };
 		A5EDF6EB1C7E48150065F121 /* pmaObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pmaObject.swift; sourceTree = "<group>"; };
+		C6A98780C3B5F4EEA1FD6D13 /* Pods-pmaToolkitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pmaToolkitTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-pmaToolkitTests/Pods-pmaToolkitTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +67,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5DF05DC1C7E4530008A09AB /* pmaToolkit.framework in Frameworks */,
+				50E24201849FCE124CC52FA7 /* Pods_pmaToolkitTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,6 +79,8 @@
 			children = (
 				391AF4D8EC8B75B6B9BCB567 /* Pods-pmaToolkit.debug.xcconfig */,
 				06DE392296E9CE69383EB257 /* Pods-pmaToolkit.release.xcconfig */,
+				C6A98780C3B5F4EEA1FD6D13 /* Pods-pmaToolkitTests.debug.xcconfig */,
+				6108C6C1A13654037FCE4813 /* Pods-pmaToolkitTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -127,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				4F2A142C82CFD3F28ABF1DBD /* Pods_pmaToolkit.framework */,
+				5BB7EF990C49068603F881BD /* Pods_pmaToolkitTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -149,12 +157,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A5DF05E51C7E4530008A09AB /* Build configuration list for PBXNativeTarget "pmaToolkit" */;
 			buildPhases = (
-				6E5EF171B45B83C57FEF1820 /* Check Pods Manifest.lock */,
+				6E5EF171B45B83C57FEF1820 /* [CP] Check Pods Manifest.lock */,
 				A5DF05CC1C7E4530008A09AB /* Sources */,
 				A5DF05CD1C7E4530008A09AB /* Frameworks */,
 				A5DF05CE1C7E4530008A09AB /* Headers */,
 				A5DF05CF1C7E4530008A09AB /* Resources */,
-				8DD7DECEA92C6BDF440BF0A1 /* Copy Pods Resources */,
+				8DD7DECEA92C6BDF440BF0A1 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -169,9 +177,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A5DF05E81C7E4530008A09AB /* Build configuration list for PBXNativeTarget "pmaToolkitTests" */;
 			buildPhases = (
+				71283A8443F42AB20F41EB51 /* [CP] Check Pods Manifest.lock */,
 				A5DF05D71C7E4530008A09AB /* Sources */,
 				A5DF05D81C7E4530008A09AB /* Frameworks */,
 				A5DF05D91C7E4530008A09AB /* Resources */,
+				05C84C294657AA4211C1419D /* [CP] Embed Pods Frameworks */,
+				20DEC72ADA38823B165B45E1 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -190,14 +201,16 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "Philadelphia Museum of Art";
 				TargetAttributes = {
 					A5DF05D01C7E4530008A09AB = {
 						CreatedOnToolsVersion = 7.2.1;
+						LastSwiftMigration = 0830;
 					};
 					A5DF05DA1C7E4530008A09AB = {
 						CreatedOnToolsVersion = 7.2.1;
+						LastSwiftMigration = 0830;
 					};
 				};
 			};
@@ -237,29 +250,74 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		6E5EF171B45B83C57FEF1820 /* Check Pods Manifest.lock */ = {
+		05C84C294657AA4211C1419D /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-pmaToolkitTests/Pods-pmaToolkitTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8DD7DECEA92C6BDF440BF0A1 /* Copy Pods Resources */ = {
+		20DEC72ADA38823B165B45E1 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-pmaToolkitTests/Pods-pmaToolkitTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6E5EF171B45B83C57FEF1820 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		71283A8443F42AB20F41EB51 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		8DD7DECEA92C6BDF440BF0A1 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -316,8 +374,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -364,8 +424,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -385,6 +447,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -397,6 +460,7 @@
 			baseConfigurationReference = 391AF4D8EC8B75B6B9BCB567 /* Pods-pmaToolkit.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -408,6 +472,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -416,6 +481,7 @@
 			baseConfigurationReference = 06DE392296E9CE69383EB257 /* Pods-pmaToolkit.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -426,26 +492,33 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.pmaTools.pmaToolkit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
 		A5DF05E91C7E4530008A09AB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C6A98780C3B5F4EEA1FD6D13 /* Pods-pmaToolkitTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = pmaToolkitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.pmaTools.pmaToolkitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		A5DF05EA1C7E4530008A09AB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6108C6C1A13654037FCE4813 /* Pods-pmaToolkitTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = pmaToolkitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.pmaTools.pmaToolkitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

@@ -8,13 +8,13 @@
 
 import UIKit
 
-public class pmaObject {
+open class pmaObject {
 
-    public var title : String!
-    public var location : [pmaLocation]?
-    public var objectID : Int!
-    public var url : NSURL?
+    open var title : String!
+    open var location : [pmaLocation]?
+    open var objectID : Int!
+    open var url : URL?
     
-    public var isOnDisplay : Bool = false
+    open var isOnDisplay : Bool = false
 
 }

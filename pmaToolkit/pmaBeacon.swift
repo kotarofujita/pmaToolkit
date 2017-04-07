@@ -9,14 +9,14 @@
 import UIKit
 import CoreLocation
 
-public class pmaBeacon: NSObject, NSCopying {
+open class pmaBeacon: NSObject, NSCopying {
     
-    public var alias : String?
-    public var major : Int!
-    public var minor : Int!
+    open var alias : String?
+    open var major : Int!
+    open var minor : Int!
 
-    public var originalBeacon: CLBeacon!
-    public var lastSeen : NSDate?
+    open var originalBeacon: CLBeacon!
+    open var lastSeen : Date?
     
     override init() {
         super.init()
@@ -29,7 +29,7 @@ public class pmaBeacon: NSObject, NSCopying {
         self.originalBeacon = originalBeacon
     }
     
-    public func copyWithZone(zone: NSZone) -> AnyObject {
+    open func copy(with zone: NSZone?) -> Any {
         let copy = pmaBeacon(alias: self.alias, major: self.major, minor: self.minor, originalBeacon: self.originalBeacon)
         return copy
     }

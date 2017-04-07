@@ -8,15 +8,15 @@
 
 import UIKit
 
-public class pmaLocation: NSObject {
+open class pmaLocation: NSObject {
     
     // Mark: Public var
     
-    public var name : String!
-    public var enabled = true
-    public var floor : floors!
-    public var type = types.gallery
-    public var title : String?
+    open var name : String!
+    open var enabled = true
+    open var floor : floors!
+    open var type = types.gallery
+    open var title : String?
     
     public enum types {
         case gallery
@@ -35,12 +35,12 @@ public class pmaLocation: NSObject {
     }
     
     
-    public var objects = [pmaObject]()
-    public var beacons = [pmaBeacon]()
+    open var objects = [pmaObject]()
+    open var beacons = [pmaBeacon]()
     
     // Mark: Public
     
-    public func respondsToBeacon(beacon: pmaBeacon) -> Bool {
+    open func respondsToBeacon(_ beacon: pmaBeacon) -> Bool {
         for b in self.beacons {
             if b.major == beacon.major && b.minor == beacon.minor {
                 return true
@@ -49,7 +49,7 @@ public class pmaLocation: NSObject {
         return false
     }
     
-    public func isObjectAtLocation(object: pmaObject) -> Bool {
+    open func isObjectAtLocation(_ object: pmaObject) -> Bool {
         for obj in self.objects {
             if obj.objectID == object.objectID {
                 return true

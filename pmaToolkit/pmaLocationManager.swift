@@ -13,26 +13,26 @@ import SwiftyJSON
 import CoreBluetooth
 import MediaPlayer
 
-public class pmaLocationManager : NSObject, CLLocationManagerDelegate {
+open class pmaLocationManager : NSObject, CLLocationManagerDelegate {
     
     public enum locationSensingType : Int {
-        case MainBuilding
+        case mainBuilding
     }
     
-    public var objects = [pmaObject]()
-    public var locations = [pmaLocation]()
-    public var beacons = [pmaBeacon]()
+    open var objects = [pmaObject]()
+    open var locations = [pmaLocation]()
+    open var beacons = [pmaBeacon]()
     
-    public var currentLocation : pmaLocation?
-    public var previousLocation : pmaLocation?
+    open var currentLocation : pmaLocation?
+    open var previousLocation : pmaLocation?
     
-    private let locationManager = CLLocationManager()
+    fileprivate let locationManager = CLLocationManager()
     
-    private var beaconsInRange = [pmaBeacon]()
-    private var locationsInRange = [[pmaLocation : Float]]()
+    fileprivate var beaconsInRange = [pmaBeacon]()
+    fileprivate var locationsInRange = [[pmaLocation : Float]]()
     
-    private var unknownLocationTimestamp = NSDate()
-    private var sensingType : locationSensingType!
+    fileprivate var unknownLocationTimestamp = Date()
+    fileprivate var sensingType : locationSensingType!
     
     // MARK: Init
     
@@ -43,11 +43,11 @@ public class pmaLocationManager : NSObject, CLLocationManagerDelegate {
     
     // MARK: Loading Remote Data
     
-    private func loadBeacons(completionHandler: () -> ()) {
+    fileprivate func loadBeacons(_ completionHandler: @escaping () -> ()) {
         pmaToolkit.logInfo("Loading beacons...")
-        dispatch_async(pmaToolkit.serialLoadingQueue) {
+        pmaToolkit.serialLoadingQueue.async {
             if let jsonData = pmaCacheManager.loadJSONFile(pmaToolkit.settings.cacheSettings.urlBeacons) {
-                if jsonData != nil {
+                if jsonData != JSON.null {
                     for (_, beaconValues): (String, JSON) in jsonData["beacons"] {
                         
                         let newBeacon = pmaBeacon()
@@ -70,15 +70,15 @@ public class pmaLocationManager : NSObject, CLLocationManagerDelegate {
                     }
                 }
             }
-            dispatch_async(dispatch_get_main_queue()) {
+            DispatchQueue.main.async {
                 completionHandler()
                 for beacon in self.beacons {
                     
-                    pmaToolkit.logDebug("Beacon loaded: \(beacon.alias) - Major: \(beacon.major), Minor: \(beacon.minor)")
+                    pmaToolkit.logDebug("Beacon loaded: \(String(describing: beacon.alias)) - Major: \(beacon.major), Minor: \(beacon.minor)")
                     
                     if let location = self.getLocationFromBeaconAlias(beacon.alias!) {
                         location.beacons.append(beacon)
-                        pmaToolkit.logDebug("Adding beacon \(beacon.alias) to location \(location.name)")
+                        pmaToolkit.logDebug("Adding beacon \(String(describing: beacon.alias)) to location \(location.name)")
                     }
                 }
                 
@@ -87,11 +87,11 @@ public class pmaLocationManager : NSObject, CLLocationManagerDelegate {
         }
     }
     
-    private func loadLocations(completionHandler: () -> ()) {
+    fileprivate func loadLocations(_ completionHandler: @escaping () -> ()) {
         pmaToolkit.logInfo("Loading locations...")
-        dispatch_async(pmaToolkit.serialLoadingQueue) {
+        pmaToolkit.serialLoadingQueue.async {
             if let jsonData = pmaCacheManager.loadJSONFile(pmaToolkit.settings.cacheSettings.urlLocations) {
-                if jsonData != nil {
+                if jsonData != JSON.null {
                     for (_, locationValues): (String, JSON) in jsonData["locations"] {
                         
                         let newLocation = pmaLocation()
@@ -109,29 +109,29 @@ public class pmaLocationManager : NSObject, CLLocationManagerDelegate {
                         }
                         
                         if let floor = locationValues["floor"].string {
-                            if floor.lowercaseString == "ground" {
+                            if floor.lowercased() == "ground" {
                                 newLocation.floor = pmaLocation.floors.ground
-                            } else if floor.lowercaseString == "first" {
+                            } else if floor.lowercased() == "first" {
                                 newLocation.floor = pmaLocation.floors.first
-                            } else if floor.lowercaseString == "second" {
+                            } else if floor.lowercased() == "second" {
                                 newLocation.floor = pmaLocation.floors.second
                             }
                         }
                         
                         if let type = locationValues["type"].string {
-                            if type.lowercaseString == "elevator" {
+                            if type.lowercased() == "elevator" {
                                 newLocation.type = pmaLocation.types.elevator
-                            } else if type.lowercaseString == "food" {
+                            } else if type.lowercased() == "food" {
                                 newLocation.type = pmaLocation.types.food
-                            } else if type.lowercaseString == "info" {
+                            } else if type.lowercased() == "info" {
                                 newLocation.type = pmaLocation.types.info
-                            } else if type.lowercaseString == "stairs" {
+                            } else if type.lowercased() == "stairs" {
                                 newLocation.type = pmaLocation.types.stairs
-                            } else if type.lowercaseString == "gallery" {
+                            } else if type.lowercased() == "gallery" {
                                 newLocation.type = pmaLocation.types.gallery
-                            } else if type.lowercaseString == "store" {
+                            } else if type.lowercased() == "store" {
                                 newLocation.type = pmaLocation.types.store
-                            } else if type.lowercaseString == "bathroom" {
+                            } else if type.lowercased() == "bathroom" {
                                 newLocation.type = pmaLocation.types.bathroom
                             }
                         }
@@ -144,10 +144,10 @@ public class pmaLocationManager : NSObject, CLLocationManagerDelegate {
                     }
                 }
             }
-            dispatch_async(dispatch_get_main_queue()) {
+            DispatchQueue.main.async {
                 completionHandler()
                 for location in self.locations {
-                    pmaToolkit.logDebug("Location loaded: \(location.name) - Floor \(location.floor), Type: \(location.type), Enabled: \(location.enabled), Title: \(location.title)")
+                    pmaToolkit.logDebug("Location loaded: \(location.name) - Floor \(location.floor), Type: \(location.type), Enabled: \(location.enabled), Title: \(String(describing: location.title))")
                 }
                 pmaToolkit.logInfo("Locations loaded: \(self.locations.count)")
             }
@@ -156,7 +156,7 @@ public class pmaLocationManager : NSObject, CLLocationManagerDelegate {
     
     // MARK: Ranging Beacons
 
-    public func startRangingBeacons(sensingType: locationSensingType) {
+    open func startRangingBeacons(_ sensingType: locationSensingType) {
         if pmaToolkit.configurationIsValid() {
             self.loadLocations({
                 self.loadBeacons({
@@ -170,19 +170,19 @@ public class pmaLocationManager : NSObject, CLLocationManagerDelegate {
         
     }
     
-    private func startRangingBeaconsInRegion() {
+    fileprivate func startRangingBeaconsInRegion() {
         if self.areBeaconsLoaded() {
-            if (CLLocationManager.authorizationStatus() != CLAuthorizationStatus.AuthorizedWhenInUse) {
+            if (CLLocationManager.authorizationStatus() != CLAuthorizationStatus.authorizedWhenInUse) {
                 locationManager.requestWhenInUseAuthorization()
             }
             
-            let region = CLBeaconRegion(proximityUUID: NSUUID(UUIDString: pmaToolkit.settings.iBeaconUUID)!, identifier: pmaToolkit.settings.iBeaconIdentifier)
+            let region = CLBeaconRegion(proximityUUID: UUID(uuidString: pmaToolkit.settings.iBeaconUUID)!, identifier: pmaToolkit.settings.iBeaconIdentifier)
             
-            locationManager.startRangingBeaconsInRegion(region)
+            locationManager.startRangingBeacons(in: region)
             locationManager.desiredAccuracy =  kCLLocationAccuracyBest
             
-            if self.sensingType == locationSensingType.MainBuilding {
-                NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("scanForMainBuildingBeaconsInRange"), userInfo: nil, repeats: true)
+            if self.sensingType == locationSensingType.mainBuilding {
+                Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(pmaLocationManager.scanForMainBuildingBeaconsInRange), userInfo: nil, repeats: true)
             }
             
         } else {
@@ -190,30 +190,30 @@ public class pmaLocationManager : NSObject, CLLocationManagerDelegate {
         }
     }
     
-    public func locationManager(manager: CLLocationManager, didEnterRegion region: CLRegion) {
+    open func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
         // Entered Region
     }
     
-    public func locationManager(manager: CLLocationManager, didExitRegion region: CLRegion) {
+    open func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
         // Exited Region
     }
     
-    public func locationManager(manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], inRegion region: CLBeaconRegion) {
+    open func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
         
-        if self.sensingType == locationSensingType.MainBuilding {
+        if self.sensingType == locationSensingType.mainBuilding {
             self.processBeaconsForMainBuilding(beacons)
         }
     }
     
     // MARK: Heading
     
-    public func startUpdateHeading() {
+    open func startUpdateHeading() {
         pmaToolkit.logInfo("Start updating heading information")
         locationManager.headingFilter = pmaToolkit.settings.headingFilter
         locationManager.startUpdatingHeading()
     }
     
-    public func locationManager(manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
+    open func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
         
         let angle_in_degrees : CGFloat = CGFloat(newHeading.magneticHeading)
         let angle_in_radians = ((180 - (angle_in_degrees + 135)) * 3.1415) / 180.0
@@ -223,31 +223,31 @@ public class pmaLocationManager : NSObject, CLLocationManagerDelegate {
     
     // MARK: Location Calculation
     
-    private func addBeaconToBeaconsInRange(beacon: CLBeacon, proximity: CLProximity) {
+    fileprivate func addBeaconToBeaconsInRange(_ beacon: CLBeacon, proximity: CLProximity) {
         
         if let matched = self.getPMABeaconForCLBeacon(beacon) {
             let matchedBeacon = matched.copy() as! pmaBeacon
             matchedBeacon.originalBeacon = beacon
-            matchedBeacon.lastSeen = NSDate()
+            matchedBeacon.lastSeen = Date()
             
             var proximityName = ""
             
             switch proximity {
-            case CLProximity.Immediate :
+            case CLProximity.immediate :
                 self.beaconsInRange.append(matchedBeacon)
                 self.beaconsInRange.append(matchedBeacon)
                 proximityName = "Immediate"
-            case CLProximity.Near :
+            case CLProximity.near :
                 self.beaconsInRange.append(matchedBeacon)
                 proximityName = "Near"
-            case CLProximity.Far :
+            case CLProximity.far :
                 self.beaconsInRange.append(matchedBeacon)
                 proximityName = "Far"
             default:
                 pmaToolkit.logDebug("No beacon to append.")
             }
             
-            pmaToolkit.logDebug("Adding to range: \(proximityName) - \(matchedBeacon.alias), ACC \(String(format: "%.2f", beacon.accuracy))m, RSSI \(beacon.rssi)dB, rangeCount: \(self.beaconsInRange.count)")
+            pmaToolkit.logDebug("Adding to range: \(proximityName) - \(String(describing: matchedBeacon.alias)), ACC \(String(format: "%.2f", beacon.accuracy))m, RSSI \(beacon.rssi)dB, rangeCount: \(self.beaconsInRange.count)")
             
         }
     }
@@ -268,7 +268,7 @@ public class pmaLocationManager : NSObject, CLLocationManagerDelegate {
         }
         
         for (beacon, count) in countForEachBeacon {
-            debugString += "\(count)x \(beacon.alias)"
+            debugString += "\(count)x \(String(describing: beacon.alias))"
         }
         
         if !self.beaconsInRange.isEmpty && pmaToolkit.settings.beaconVerboseLogging {
@@ -278,7 +278,7 @@ public class pmaLocationManager : NSObject, CLLocationManagerDelegate {
         return countForEachBeacon
     }
     
-    func calculateRelativeProbabilityDistributionForBeaconsInRange(ListOfBeaconsWithOccurenceCount: [pmaBeacon : Int]) ->  [pmaBeacon : Float] {
+    func calculateRelativeProbabilityDistributionForBeaconsInRange(_ ListOfBeaconsWithOccurenceCount: [pmaBeacon : Int]) ->  [pmaBeacon : Float] {
         var percentageForEachBeacon = [pmaBeacon : Float]()
         
         var debugString = "Probability per beacon: "
@@ -286,7 +286,7 @@ public class pmaLocationManager : NSObject, CLLocationManagerDelegate {
         for (beacon, count) in ListOfBeaconsWithOccurenceCount {
             
             percentageForEachBeacon[beacon] = Float(count) / Float(self.beaconsInRange.count)
-            debugString += "\(beacon.alias): \(percentageForEachBeacon[beacon]!), "
+            debugString += "\(String(describing: beacon.alias)): \(percentageForEachBeacon[beacon]!), "
         }
         
         if !ListOfBeaconsWithOccurenceCount.isEmpty && pmaToolkit.settings.beaconVerboseLogging {
@@ -296,7 +296,7 @@ public class pmaLocationManager : NSObject, CLLocationManagerDelegate {
         return percentageForEachBeacon
     }
     
-    func calculateProbabilityForLocationsFromBeaconsInRange(probabilityForEachBeacon : [pmaBeacon : Float]) -> [pmaLocation : Float] {
+    func calculateProbabilityForLocationsFromBeaconsInRange(_ probabilityForEachBeacon : [pmaBeacon : Float]) -> [pmaLocation : Float] {
         var locationPercentage = [pmaLocation : Float]()
         
         for location in self.locations {
@@ -313,17 +313,17 @@ public class pmaLocationManager : NSObject, CLLocationManagerDelegate {
         
         for (location, percent) in locationPercentage {
             if percent == 0 {
-                locationPercentage.removeValueForKey(location)
+                locationPercentage.removeValue(forKey: location)
             }
         }
         
         return locationPercentage
     }
     
-    func assumeCurrentLocation(probabilityForEachLocation: [pmaLocation : Float]) -> (location: pmaLocation, probability: Float)? {
+    func assumeCurrentLocation(_ probabilityForEachLocation: [pmaLocation : Float]) -> (location: pmaLocation, probability: Float)? {
         if self.areLocationsLoaded() {
         
-            let maxPercentage = probabilityForEachLocation.values.maxElement()
+            let maxPercentage = probabilityForEachLocation.values.max()
             let maxLocation = pmaToolkit.allKeysForValueFromDictionary(probabilityForEachLocation, val: maxPercentage!).first
             
             return (location: maxLocation!, probability: maxPercentage!)
@@ -332,10 +332,10 @@ public class pmaLocationManager : NSObject, CLLocationManagerDelegate {
         return nil
     }
     
-    private func processBeaconsForMainBuilding(beacons: [CLBeacon]) {
+    fileprivate func processBeaconsForMainBuilding(_ beacons: [CLBeacon]) {
 
         // filter the unknown proximity beacons, keep all others
-        let knownBeaconsList = beacons.filter{ $0.proximity != CLProximity.Unknown }
+        let knownBeaconsList = beacons.filter{ $0.proximity != CLProximity.unknown }
         
         for beacon in knownBeaconsList {
             if pmaToolkit.settings.beaconVerboseLogging {
@@ -343,11 +343,11 @@ public class pmaLocationManager : NSObject, CLLocationManagerDelegate {
             }
         }
         
-        let filteredBeaconsList = knownBeaconsList.sort({$0.accuracy < $1.accuracy})
+        let filteredBeaconsList = knownBeaconsList.sorted(by: {$0.accuracy < $1.accuracy})
         
         for beacon in filteredBeaconsList {
             if let _ = self.getPMABeaconForCLBeacon(beacon) {
-                self.addBeaconToBeaconsInRange(beacon, proximity: .Immediate)
+                self.addBeaconToBeaconsInRange(beacon, proximity: .immediate)
             }
         }
         
@@ -358,12 +358,12 @@ public class pmaLocationManager : NSObject, CLLocationManagerDelegate {
         
         if self.areBeaconsLoaded() {
             
-            for (i,beacon) in beaconsInRange.enumerate().reverse() {
-                let timeSinceLastSeen = NSCalendar.currentCalendar().components(.Second, fromDate: beacon.lastSeen!, toDate: NSDate(), options: []).second
+            for (i,beacon) in beaconsInRange.enumerated().reversed() {
+                let timeSinceLastSeen = (Calendar.current as NSCalendar).components(.second, from: beacon.lastSeen!, to: Date(), options: []).second
                 //print("time since beacon was seen last: \(timeSinceLastSeen), \(object.name)")
-                if timeSinceLastSeen >= pmaToolkit.settings.beaconTTL {
-                    beaconsInRange.removeAtIndex(i)
-                    pmaToolkit.logDebug("Removing beacon from range due to timeout: \(beacon.alias)")
+                if timeSinceLastSeen! >= pmaToolkit.settings.beaconTTL {
+                    beaconsInRange.remove(at: i)
+                    pmaToolkit.logDebug("Removing beacon from range due to timeout: \(String(describing: beacon.alias))")
                 }
             }
             
@@ -389,10 +389,10 @@ public class pmaLocationManager : NSObject, CLLocationManagerDelegate {
                 }
             } else {
                 if self.beaconsInRange.count == 0 {
-                        let timeSinceLastSeen = NSCalendar.currentCalendar().components(.Second, fromDate: self.unknownLocationTimestamp, toDate: NSDate(), options: []).second
-                        if timeSinceLastSeen > 15 {
+                        let timeSinceLastSeen = (Calendar.current as NSCalendar).components(.second, from: self.unknownLocationTimestamp, to: Date(), options: []).second
+                        if timeSinceLastSeen! > 15 {
                             // notify
-                            self.unknownLocationTimestamp = NSDate()
+                            self.unknownLocationTimestamp = Date()
                             if self.currentLocation != nil {
                             pmaToolkit.postNotification("locationUnknown", parameters: ["lastKnownLocation" : self.currentLocation!])
                             } else {
@@ -408,12 +408,12 @@ public class pmaLocationManager : NSObject, CLLocationManagerDelegate {
         }
     }
     
-    private func updateCurrentLocation(location: pmaLocation) {
+    fileprivate func updateCurrentLocation(_ location: pmaLocation) {
         if (self.currentLocation?.name == location.name) {
             // we haven't moved, still the same gallery
         } else {
             // we moved!
-            pmaToolkit.logInfo("We moved! From: \(self.previousLocation?.name) To: \(location.name)")
+            pmaToolkit.logInfo("We moved! From: \(String(describing: self.previousLocation?.name)) To: \(location.name)")
             
             var objectsInCurrentLocation = "objects in current location: (\(location.objects.count)): "
             for object in location.objects {
@@ -430,16 +430,16 @@ public class pmaLocationManager : NSObject, CLLocationManagerDelegate {
     
     // MARK: Helper
     
-    private func getPMABeaconForCLBeacon(originalBeacon: CLBeacon) -> pmaBeacon? {
+    fileprivate func getPMABeaconForCLBeacon(_ originalBeacon: CLBeacon) -> pmaBeacon? {
         for beacon in self.beacons {
-            if beacon.major == originalBeacon.major.integerValue && beacon.minor == originalBeacon.minor.integerValue {
+            if beacon.major == originalBeacon.major.intValue && beacon.minor == originalBeacon.minor.intValue {
                 return beacon
             }
         }
         return nil
     }
     
-    private func getLocationForBeacon(beacon: pmaBeacon!) -> pmaLocation? {
+    fileprivate func getLocationForBeacon(_ beacon: pmaBeacon!) -> pmaLocation? {
         for location in self.locations {
             if location.respondsToBeacon(beacon) {
                 return location
@@ -448,26 +448,26 @@ public class pmaLocationManager : NSObject, CLLocationManagerDelegate {
         return nil
     }
     
-    public func getCurrentLocation() -> pmaLocation? {
+    open func getCurrentLocation() -> pmaLocation? {
         return self.currentLocation
     }
     
-    private func areBeaconsLoaded() -> Bool {
+    fileprivate func areBeaconsLoaded() -> Bool {
         return (self.beacons.count > 0)
     }
     
-    private func areLocationsLoaded() -> Bool {
+    fileprivate func areLocationsLoaded() -> Bool {
         return (self.locations.count > 0)
     }
     
-    public func getLocationFromBeaconAlias(alias: String) -> pmaLocation? {
+    open func getLocationFromBeaconAlias(_ alias: String) -> pmaLocation? {
         let matches = pmaToolkit.matchesForRegexInText("[_][A-Z]{1}", text: alias)
         
         if matches.count > 0 {
             
             var result = alias
             for r in pmaToolkit.roomAliasReplacements {
-                result = result.stringByReplacingOccurrencesOfString(r, withString: "")
+                result = result.replacingOccurrences(of: r, with: "")
             }
             return self.getLocationForName(result)
         } else {
@@ -476,7 +476,7 @@ public class pmaLocationManager : NSObject, CLLocationManagerDelegate {
     
     }
     
-    private func getLocationForName(name: String) -> pmaLocation? {
+    fileprivate func getLocationForName(_ name: String) -> pmaLocation? {
         for location in self.locations {
             if location.name == name {
                 return location

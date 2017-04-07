@@ -9,13 +9,13 @@
 import Foundation
 import SwiftyJSON
 
-public class pmaCacheManager {
+open class pmaCacheManager {
     
-    public static func loadJSONFile(endpoint: String) -> JSON? {
+    open static func loadJSONFile(_ endpoint: String) -> JSON? {
         if let data = self.getData(self.constructURLForEndpoint(endpoint), ignoreCache: true) {
             let jsonData = JSON(data: data)
             
-            if jsonData != nil {
+            if jsonData != JSON.null {
                 return jsonData
             } else {
                 return nil
@@ -28,27 +28,28 @@ public class pmaCacheManager {
     
     // MARK: Private
     
-    private static func makeURLRequest(url: NSURL, ignoreCache: Bool = false) -> NSURLRequest {
-        var cachePolicy = NSURLRequestCachePolicy.ReturnCacheDataElseLoad
+    fileprivate static func makeURLRequest(_ url: URL, ignoreCache: Bool = false) -> URLRequest {
+        var cachePolicy = NSURLRequest.CachePolicy.returnCacheDataElseLoad
         if ignoreCache {
-            cachePolicy = .ReloadIgnoringLocalAndRemoteCacheData
+            cachePolicy = .reloadIgnoringLocalAndRemoteCacheData
         }
-        let request = NSURLRequest(URL: url, cachePolicy: cachePolicy, timeoutInterval: pmaToolkit.settings.cacheSettings.requestTimeout)
+        let request = URLRequest(url: url, cachePolicy: cachePolicy, timeoutInterval: pmaToolkit.settings.cacheSettings.requestTimeout)
         
         return request
     }
     
 
-    private static func constructURLForEndpoint(endpoint : String) -> NSURL {
-        return NSURL(string: pmaToolkit.settings.cacheSettings.hostProtocol + pmaToolkit.settings.cacheSettings.hostName + "/" + (endpoint as String))!
+    fileprivate static func constructURLForEndpoint(_ endpoint : String) -> URL {
+        return URL(string: pmaToolkit.settings.cacheSettings.hostProtocol + pmaToolkit.settings.cacheSettings.hostName + "/" + (endpoint as String))!
     }
     
-    private static func getData(url: NSURL, ignoreCache: Bool = false) -> NSData? {
+    fileprivate static func getData(_ url: URL, ignoreCache: Bool = false) -> Data? {
         
+
         let request = self.makeURLRequest(url, ignoreCache: ignoreCache)
-        var data: NSData?
+        var data: Data?
         do {
-            data = try NSURLConnection.sendSynchronousRequest(request, returningResponse: nil)
+            data = try NSURLConnection.sendSynchronousRequest(request, returning: nil)
         } catch _ as NSError {
             data = nil
         }
