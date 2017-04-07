@@ -28,7 +28,7 @@ class ViewController: UIViewController {
         pmaToolkit.registerNotification(self, function: "headingUpdated:", type: "didUpdateHeading")
         
         // This is optional and another way to keep checking if we currently know where we are inside the building
-        NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("checkForCurrentLocation"), userInfo: nil, repeats: true)
+        Timer.scheduledTimer(timeInterval: 1, target: self, selector: Selector("checkForCurrentLocation"), userInfo: nil, repeats: true)
         
     }
     
@@ -36,7 +36,7 @@ class ViewController: UIViewController {
         pmaToolkit.logInfo("Current location: \(self.locationManager.getCurrentLocation()?.name)")
     }
     
-    func locationUnknown(notification: NSNotification) {
+    func locationUnknown(_ notification: Notification) {
         if let location = pmaToolkit.getObjectFromNotificationForKey(notification, key: "lastKnownLocation") as? pmaLocation {
             self.currentLocationLabel.text = "Location unknown, last known location: \(location.name)"
         } else {
@@ -44,13 +44,13 @@ class ViewController: UIViewController {
         }
     }
     
-    func locationChanged(notification: NSNotification) {
+    func locationChanged(_ notification: Notification) {
         if let location = pmaToolkit.getObjectFromNotificationForKey(notification, key: "currentLocation") as? pmaLocation {
             self.currentLocationLabel.text = "Location: \(location.name)"
         }
     }
     
-    func headingUpdated(notification: NSNotification) {
+    func headingUpdated(_ notification: Notification) {
         if let heading = pmaToolkit.getObjectFromNotificationForKey(notification, key: "calculatedHeadingRadians") as? CGFloat {
             self.currentHeadingLabel.text = "Heading: \(heading)"
         }
